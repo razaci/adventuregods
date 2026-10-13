@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Adventure Gods — Phase 10</title>
+<style>
+:root{--bg:#070912;--panel:#111526;--line:#39405f;--text:#f6f1dc;--muted:#aab0c8;--gold:#f4c45c;--cyan:#65e7ff;--red:#ff657d}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% -10%,#25214a 0,#0c1020 35%,#05070d 75%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button{font:inherit;color:inherit} .app{max-width:1000px;margin:auto;padding:12px 12px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:0;z-index:5;background:#070912e8;backdrop-filter:blur(12px);padding:9px;border:1px solid #242a43;border-radius:0 0 14px 14px}.brand{font-weight:950;letter-spacing:.16em;color:var(--gold);font-size:clamp(16px,5vw,24px)}.stats{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.pill{border:1px solid #343b59;background:#111628;padding:5px 8px;border-radius:999px;font-size:11px}.stage{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.5fr) minmax(0,.7fr);gap:10px;align-items:stretch;margin-top:18px}.card{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#171b31,#0d1020 70%);border-radius:18px;box-shadow:0 18px 50px #0008,inset 0 0 35px #7383ff0b}.side{min-height:260px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end}.side:before,.main:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 20%,#ffffff0a 50%,transparent 80%);pointer-events:none}.sigil{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:48px;filter:drop-shadow(0 0 15px #78e8ff88)}.side h3,.main h2{margin:0 0 7px}.side p,.story{color:#c7cbe0;font-size:13px;line-height:1.5}.main{min-height:350px;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;border-color:#7c6b3a;box-shadow:0 20px 60px #000b,0 0 28px #e8bd4930}.eyebrow{color:var(--gold);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.main h2{font-size:clamp(24px,6vw,40px)}.choices{display:grid;gap:8px;margin-top:14px}.choice{border:1px solid #465072;background:#161c32;padding:12px;border-radius:11px;text-align:left;font-weight:800}.choice:active{transform:scale(.985)}.choice small{display:block;color:var(--muted);font-weight:500;margin-top:3px}.table{margin-top:15px;border:1px solid #725f34;background:linear-gradient(#18121c,#0d0a12);border-radius:22px;padding:15px;box-shadow:inset 0 0 60px #e7b3440b}.table-title{text-align:center;font-size:11px;color:var(--gold);letter-spacing:.22em;font-weight:900;margin-bottom:12px}.fates{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.fate{min-height:160px;border:2px solid #80652d;border-radius:13px;background:repeating-linear-gradient(45deg,#401828 0 8px,#251226 8px 16px);position:relative;padding:10px;box-shadow:inset 0 0 0 4px #120a11,0 8px 20px #0008;transition:.25s}.fate .back{position:absolute;inset:10px;border:1px solid #d9a83b88;border-radius:8px;display:grid;place-items:center;font-size:32px}.fate.revealed{background:linear-gradient(160deg,#f0e4c4,#c9b77f);color:#191318;transform:translateY(-5px)}.fate.revealed .back{display:none}.fate .face{display:none}.fate.revealed .face{display:block}.fate b{font-family:Georgia,serif;font-size:17px}.fate p{font-size:11px;line-height:1.35}.fate.used{opacity:.72}.fate.used:after{content:"RESOLVED";position:absolute;right:7px;bottom:6px;font-size:8px;font-weight:950;letter-spacing:.12em}.special{box-shadow:0 0 0 2px #65e7ff55,0 0 25px #65e7ff33!important}.controls{display:flex;gap:8px;margin-top:10px}.mini{flex:1;border:1px solid #3b4362;background:#12172a;border-radius:10px;padding:9px;font-size:12px;font-weight:800}.log{margin-top:14px;border:1px solid #292f48;background:#090c16;border-radius:14px;padding:12px}.log h3{font-size:11px;color:var(--cyan);letter-spacing:.14em;margin:0 0 8px}.logline{font-size:12px;color:#aeb5cf;margin:5px 0}.flash{animation:flash .45s}@keyframes flash{50%{filter:brightness(1.8)}}
+@media(max-width:680px){.stage{grid-template-columns:1fr 1.55fr 1fr;gap:6px}.side{min-height:220px;padding:9px}.side p{font-size:10px}.side h3{font-size:13px}.sigil{font-size:31px}.main{min-height:310px;padding:13px}.main h2{font-size:24px}.story{font-size:12px}.fate{min-height:135px;padding:7px}.fate b{font-size:13px}.fate p{font-size:9px}.brand{letter-spacing:.08em}.pill{font-size:9px;padding:4px 6px}}
+</style></head>
+<body><main class="app">
+<header class="top"><div class="brand">ADVENTURE GODS <span style="font-size:.45em;color:#65e7ff">// COMPLETE</span></div><div class="stats"><span class="pill">❤ <b id="hp">100</b></span><span class="pill">✦ <b id="luck">5</b></span><span class="pill">◈ <b id="credits">20</b></span><span class="pill">🎒 <b id="items">0</b></span></div></header>
+<section class="stage">
+<article class="card side" id="leftCard"><div class="sigil">☽</div><div class="eyebrow">Memory</div><h3 id="leftTitle">The Closed Gate</h3><p id="leftText">Something behind you remembers a choice you have not made yet.</p></article>
+<article class="card main" id="mainCard"><div class="sigil">♜</div><div class="eyebrow" id="chapter">Passage 01 // Arrival</div><h2 id="title">The Impossible Station</h2><div class="story" id="story">You wake beneath a black-glass ceiling. Three machines are dealing cards by themselves. A brass door bears your name, although nobody here should know it.</div><div class="choices" id="choices"></div></article>
+<article class="card side" id="rightCard"><div class="sigil">⚿</div><div class="eyebrow">Omen</div><h3 id="rightTitle">Unknown Signal</h3><p id="rightText">A transmission repeats: “Do not spend the last coin.”</p></article>
+</section>
+<section class="table"><div class="table-title">✦ THE THREE-CARD FATE TABLE ✦</div><div class="fates" id="fates"></div><div class="controls"><button class="mini" onclick="deal()">↻ Deal Fate</button><button class="mini" onclick="showInventory()">🎒 Inventory</button><button class="mini" onclick="resetGame()">⟲ New Run</button></div></section>
+<section class="log"><h3>GOD ARCHIVE // LIVE VARIABLES</h3><div id="log"></div></section>
+</main>
+<script>
+const passages={
+ arrival:{chapter:'Passage 01 // Arrival',title:'The Impossible Station',story:'You wake beneath a black-glass ceiling. Three machines are dealing cards by themselves. A brass door bears your name, although nobody here should know it.',left:['The Closed Gate','Something behind you remembers a choice you have not made yet.'],right:['Unknown Signal','A transmission repeats: “Do not spend the last coin.”'],choices:[['Touch the brass door','Set the station in motion.','door'],['Search the floor','Look for something useful.','search'],['Approach the Fate Table','Trust the cards before the doors.','table']]},
+ door:{chapter:'Passage 02 // Threshold',title:'The Door Knows You',story:'The brass door opens one inch. A mechanical eye studies your hands. “PROVE OWNERSHIP,” it says. Somewhere behind the wall, gears begin counting your decisions.',left:['Machine Memory','The station has recorded that you approached the door.'],right:['Locked Vault','A key-shaped socket flickers beside the frame.'],choices:[['Force the door','Lose health, but gain passage.','force'],['Return to the hall','Reconsider your options.','arrival']]},
+ search:{chapter:'Passage 02 // Scavenge',title:'Under the Dealer',story:'Beneath the card machine you find a silver token engraved with an eye. It is warm. The machine immediately stops pretending not to watch you.',left:['Found Object','The Eye Token has entered your inventory.'],right:['Dealer Reaction','One Fate card is now trembling.'],choices:[['Take the Eye Token','Add the strange token to inventory.','takeToken'],['Leave it and approach the table','Some objects are bait.','table']]},
+ table:{chapter:'Passage 02 // Fate',title:'The Table Wakes',story:'The three card slots ignite. Every normal card is now a single-press action: tap it and the action resolves immediately. Only special discoveries can lead into a gathering sequence.',left:['Risk Engine','Fate can alter health, luck, credits and inventory.'],right:['Hidden State','Future choices can exist only when earlier conditions are true.'],choices:[['Deal three new cards','Deal three one-press programmable actions.','deal'],['Return to the hall','Step away from fate.','arrival']]},
+ vault:{chapter:'Passage 03 // Secret',title:'The Eye Vault',story:'The token melts into the socket. A compartment opens. Inside is the first God Fragment. You have reached a passage that did not exist until your inventory satisfied its condition.',left:['Inventory Gate','Eye Token condition: TRUE'],right:['God Fragment','Permanent systems will grow from fragments in later phases.'],choices:[['Claim the Fragment','Take the first relic.','fragment'],['Return to Fate','Keep exploring.','table']]}
+};
+let state={hp:100,luck:5,credits:20,inventory:[],flags:{},passage:'arrival',history:[]};
+const fatePool=[
+ {name:'CROWN OF COINS',desc:'+15 credits. Greed leaves a trace.',run:s=>{s.credits+=15;s.flags.greedy=true}},
+ {name:'THE WOUND',desc:'Lose 12 health. Gain +2 Luck.',run:s=>{s.hp=Math.max(0,s.hp-12);s.luck+=2}},
+ {name:'EYE OF CHANCE',desc:'Gain an Eye Token if you do not have one.',run:s=>{if(!s.inventory.includes('Eye Token'))s.inventory.push('Eye Token');s.flags.sawEye=true}},
+ {name:'EMPTY THRONE',desc:'Nothing happens now. That may matter later.',run:s=>{s.flags.emptyThrone=true}},
+ {name:'GILDED KEY',desc:'Gain a Vault Key.',run:s=>{if(!s.inventory.includes('Vault Key'))s.inventory.push('Vault Key')}},
+ {name:'FORTUNE',desc:'+4 Luck.',run:s=>s.luck+=4}
+];
+function save(){try{localStorage.setItem('adventureGods.p2',JSON.stringify(state))}catch(e){}}function load(){try{let x=JSON.parse(localStorage.getItem('adventureGods.p2'));if(x)state=x}catch(e){}}
+function addLog(t){state.history.unshift(t);state.history=state.history.slice(0,7)}
+function goto(id){
+ if(id==='deal'){deal();return}
+ if(id==='takeToken'){if(!state.inventory.includes('Eye Token'))state.inventory.push('Eye Token');state.flags.tookToken=true;addLog('ITEM ACQUIRED // Eye Token');id='door'}
+ if(id==='force'){state.hp=Math.max(0,state.hp-15);state.flags.forcedDoor=true;addLog('HEALTH -15 // Door forced');id='table'}
+ if(id==='fragment'){if(!state.inventory.includes('God Fragment'))state.inventory.push('God Fragment');state.luck+=3;addLog('RELIC ACQUIRED // God Fragment');id='table'}
+ state.passage=id;render();save();
+}
+function render(){let p=passages[state.passage]||passages.arrival;document.getElementById('chapter').textContent=p.chapter;document.getElementById('title').textContent=p.title;document.getElementById('story').textContent=p.story;document.getElementById('leftTitle').textContent=p.left[0];document.getElementById('leftText').textContent=p.left[1];document.getElementById('rightTitle').textContent=p.right[0];document.getElementById('rightText').textContent=p.right[1];let c=document.getElementById('choices');c.innerHTML='';p.choices.forEach(x=>{let b=document.createElement('button');b.className='choice';b.innerHTML=x[0]+'<small>'+x[1]+'</small>';b.onclick=()=>goto(x[2]);c.appendChild(b)});if(state.inventory.includes('Eye Token')&&state.passage==='door'){let b=document.createElement('button');b.className='choice';b.innerHTML='◉ Insert the Eye Token<small>Inventory condition unlocked this hidden passage.</small>';b.onclick=()=>goto('vault');c.prepend(b)};stats();logRender()}
+function stats(){hp.textContent=state.hp;luck.textContent=state.luck;credits.textContent=state.credits;items.textContent=state.inventory.length}
+function resolveFate(el,f){
+ if(el.dataset.used==='1')return;
+ el.dataset.used='1'; el.classList.add('revealed','used');
+ f.run(state); state.flags.lastFate=f.name; addLog('CARD ACTION // '+f.name);
+ stats();logRender();save();
+ // Normal cards are one press: reveal + execute + immediately refresh the story state.
+ setTimeout(()=>render(),180);
+}
+function deal(){
+ let deck=[...fatePool].sort(()=>Math.random()-.5).slice(0,3),wrap=document.getElementById('fates');wrap.innerHTML='';
+ deck.forEach((f,i)=>{
+   let el=document.createElement('button');el.className='fate';
+   let special=/EYE OF CHANCE|GILDED KEY/.test(f.name);
+   if(special)el.classList.add('special');
+   el.innerHTML='<div class="back">♛</div><div class="face"><div class="eyebrow">'+(special?'SPECIAL FIND':'FATE '+(i+1))+'</div><b>'+f.name+'</b><p>'+f.desc+'</p></div>';
+   // One press performs the entire normal card action. We do not require a second confirm/use press.
+   el.onclick=()=>resolveFate(el,f);
+   wrap.appendChild(el)
+ });
+ addLog('FATE TABLE // Tap once to resolve a card');logRender()
+}
+function showInventory(){alert(state.inventory.length?'INVENTORY\n\n'+state.inventory.map((x,i)=>(i+1)+'. '+x).join('\n'):'INVENTORY\n\nEmpty. Explore, search, and draw Fate cards.')}
+function logRender(){document.getElementById('log').innerHTML='<div class="logline">LOCATION // '+state.passage.toUpperCase()+'</div><div class="logline">FLAGS // '+Object.keys(state.flags).length+' active</div>'+state.history.map(x=>'<div class="logline">› '+x+'</div>').join('')}
+function resetGame(){if(confirm('Start a new Adventure Gods run?')){localStorage.removeItem('adventureGods.p2');state={hp:100,luck:5,credits:20,inventory:[],flags:{},passage:'arrival',history:[]};deal();render();save()}}
+load();deal();render();
+</script>
+<style>
+#agP4{position:fixed;right:8px;bottom:8px;z-index:9999;background:#100b20;border:1px solid #d8a84e;border-radius:12px;padding:8px 10px;color:#ffe9a6;font:12px system-ui;box-shadow:0 0 20px #d8a84e55} .agQuestToast{position:fixed;left:50%;top:12%;transform:translateX(-50%);z-index:99999;background:#100b20eF;border:1px solid #f0c85a;color:#fff4c4;padding:12px 16px;border-radius:14px;font:bold 13px system-ui;box-shadow:0 0 28px #f0c85a66;animation:agfade 2.4s forwards}@keyframes agfade{0%{opacity:0;transform:translate(-50%,-8px)}15%,75%{opacity:1;transform:translate(-50%,0)}100%{opacity:0}}
+</style>
+<div id="agP4">PHASE 10 • COMPLETE LOOP</div>
+<script>
+(()=>{
+ const KEY='adventureGods.phase4.questMemory';
+ let qm={presses:0,streak:0,discoveries:0,quests:[],history:[]};
+ try{qm={...qm,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(qm))}catch(e){}};
+ const toast=t=>{let x=document.createElement('div');x.className='agQuestToast';x.textContent=t;document.body.appendChild(x);setTimeout(()=>x.remove(),2500)};
+ const special=/collect|gather|artifact|fragment|relic|key|claim|take|recover|salvage/i;
+ document.addEventListener('click',e=>{
+   const b=e.target.closest('button,.card,[data-card],[class*=card]'); if(!b)return;
+   const text=(b.innerText||b.textContent||'').trim(); if(!text)return;
+   qm.presses++; qm.streak++; qm.history.unshift({t:Date.now(),a:text.slice(0,60)}); qm.history=qm.history.slice(0,18);
+   if(special.test(text)){qm.discoveries++; toast('SPECIAL GATHERING • '+text.slice(0,38));}
+   if(qm.presses===3){qm.quests.push('Three Fates');toast('QUEST UNLOCKED • THREE FATES');}
+   if(qm.presses===7){qm.quests.push('House Remembers');toast('QUEST UNLOCKED • HOUSE REMEMBERS');}
+   if(qm.discoveries===2){qm.quests.push('Relic Hunter');toast('QUEST UNLOCKED • RELIC HUNTER');}
+   save();
+ },true);
+ window.AG_PHASE4={getState:()=>structuredClone(qm),reset:()=>{localStorage.removeItem(KEY);location.reload()}};
+})();
+</script>
+
+<style>
+#agInv5{position:fixed;inset:0;z-index:20000;background:#050710eF;display:none;padding:18px;overflow:auto}.agInvBox{max-width:760px;margin:5vh auto;background:linear-gradient(160deg,#171b31,#0b0e1a);border:1px solid #d5aa4d;border-radius:20px;padding:16px;box-shadow:0 20px 70px #000}.agInvHead{display:flex;justify-content:space-between;align-items:center;gap:10px}.agSlots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.agSlot,.agItem{border:1px solid #3d4565;background:#101527;border-radius:12px;padding:10px;min-height:72px}.agSlot b,.agItem b{display:block;color:#ffe29a}.agGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.agItem button{width:100%;margin-top:7px;border:1px solid #6c5a35;background:#211a24;border-radius:8px;padding:7px}.agEquipped{box-shadow:0 0 0 1px #65e7ff,0 0 18px #65e7ff33}.agWorldItems{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0}.agChip{border:1px solid #78602e;background:#181326;border-radius:999px;padding:5px 8px;font-size:10px;color:#ffe3a0}.agToast5{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:30000;background:#100b20;border:1px solid #65e7ff;color:#fff;padding:10px 14px;border-radius:12px;box-shadow:0 0 24px #65e7ff55}.agClose{border:1px solid #4b5576;background:#171d32;border-radius:9px;padding:8px 11px}.agCombine{border:1px solid #8c6d32;background:#211829;border-radius:11px;padding:10px;width:100%;margin-top:10px;font-weight:900;color:#ffe29a}@media(max-width:520px){.agGrid{grid-template-columns:1fr}.agSlots{grid-template-columns:1fr 1fr 1fr}.agSlot{font-size:10px;padding:7px}}
+</style>
+<div id="agWorldItems" class="agWorldItems"></div>
+<div id="agInv5"><div class="agInvBox"><div class="agInvHead"><div><div class="eyebrow">PHASE 5 // LIVING INVENTORY</div><h2 style="margin:4px 0">Artifact Loadout</h2></div><button class="agClose" onclick="AG5.close()">✕ Close</button></div><div class="agSlots" id="agSlots5"></div><div class="agGrid" id="agItems5"></div><button class="agCombine" onclick="AG5.combine()">⚒ Combine Compatible Items</button></div></div>
+<script>
+(()=>{
+ const META={
+  'Eye Token':{type:'key',icon:'◉',desc:'Opens Eye-locked story routes. Passive while carried.'},
+  'Vault Key':{type:'key',icon:'⚿',desc:'A story key. Unlocks sealed Fate outcomes.'},
+  'God Fragment':{type:'relic',icon:'✦',desc:'Equip: +2 effective Luck during Fate actions.'},
+  'Fortune Charm':{type:'relic',icon:'☘',desc:'Equip: the next damaging Fate card is softened.',consume:false},
+  'Field Tonic':{type:'consumable',icon:'⚗',desc:'Consume: restore 20 health.'},
+  'Crown Shard':{type:'relic',icon:'♛',desc:'Equip: coin Fate rewards gain a small bonus.'},
+  'Oracle Lens':{type:'relic',icon:'◈',desc:'Crafted artifact. Equip to reveal a hidden Fate hint.'}
+ };
+ let x={equipped:[null,null,null],used:[],crafted:[]};try{x={...x,...JSON.parse(localStorage.getItem('adventureGods.p5.inventory')||'{}')}}catch(e){}
+ const save5=()=>{try{localStorage.setItem('adventureGods.p5.inventory',JSON.stringify(x))}catch(e){}};
+ const toast=t=>{let d=document.createElement('div');d.className='agToast5';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1700)};
+ const inv=()=>[...new Set([...(state.inventory||[]),...x.crafted])].filter(n=>!x.used.includes(n));
+ function draw(){let list=inv();document.getElementById('agSlots5').innerHTML=x.equipped.map((n,i)=>'<div class="agSlot"><span class="eyebrow">SLOT '+(i+1)+'</span><b>'+(n?(META[n]?.icon||'◆')+' '+n:'EMPTY')+'</b><small>'+(n?'Active modifier':'Tap Equip below')+'</small></div>').join('');document.getElementById('agItems5').innerHTML=list.length?list.map(n=>{let m=META[n]||{type:'artifact',icon:'◆',desc:'Quest inventory object.'};let eq=x.equipped.includes(n);return '<div class="agItem '+(eq?'agEquipped':'')+'"><b>'+m.icon+' '+n+'</b><small>'+m.type.toUpperCase()+' // '+m.desc+'</small>'+(m.type==='consumable'?'<button onclick="AG5.use(\''+n+'\')">USE ONCE</button>':'<button onclick="AG5.equip(\''+n+'\')">'+(eq?'UNEQUIP':'EQUIP')+'</button>')+'</div>'}).join(''):'<div class="agItem">Inventory empty. Story and Fate discoveries appear here.</div>';let chips=list.slice(0,7).map(n=>'<span class="agChip">'+(META[n]?.icon||'◆')+' '+n+'</span>').join('');document.getElementById('agWorldItems').innerHTML=chips;}
+ function open(){draw();document.getElementById('agInv5').style.display='block'}function close(){document.getElementById('agInv5').style.display='none'}
+ function equip(n){let i=x.equipped.indexOf(n);if(i>=0){x.equipped[i]=null;toast('UNEQUIPPED • '+n)}else{let slot=x.equipped.indexOf(null);if(slot<0)slot=0;x.equipped[slot]=n;toast('EQUIPPED • '+n)}save5();draw();}
+ function use(n){if(n==='Field Tonic'){state.hp=Math.min(100,state.hp+20);x.used.push(n);addLog('ITEM USED // Field Tonic +20 HP');stats();save();toast('HEALTH RESTORED +20');draw();}}
+ function combine(){let a=inv();if(a.includes('Eye Token')&&a.includes('God Fragment')&&!x.crafted.includes('Oracle Lens')){x.crafted.push('Oracle Lens');x.used.push('Eye Token','God Fragment');toast('CRAFTED • ORACLE LENS');addLog('CRAFTED // Oracle Lens');save5();save();draw()}else toast('NO COMPATIBLE RECIPE YET');}
+ const oldShow=window.showInventory;window.showInventory=open;
+ const oldResolve=window.resolveFate;window.resolveFate=function(el,f){let before=state.hp,coins=state.credits;oldResolve(el,f);if(x.equipped.includes('God Fragment')){state.luck+=2;addLog('RELIC // God Fragment +2 Luck')}if(x.equipped.includes('Crown Shard')&&state.credits>coins){state.credits+=3;addLog('RELIC // Crown Shard +3 credits')}if(x.equipped.includes('Fortune Charm')&&state.hp<before){state.hp=Math.min(before,state.hp+6);addLog('CHARM // softened damage by 6')}stats();save();save5();};
+ const oldDeal=window.deal;window.deal=function(){oldDeal();if(x.equipped.includes('Oracle Lens'))toast('ORACLE LENS • One of these cards remembers your inventory.');};
+ // Seed a couple of usable Phase-5 objects through actual play milestones, without flooding inventory.
+ document.addEventListener('click',()=>{if(state.history?.some(h=>/HEALTH -15/.test(h))&&!state.inventory.includes('Field Tonic')&&!x.used.includes('Field Tonic')){state.inventory.push('Field Tonic');addLog('SUPPLY FOUND // Field Tonic');save();draw()}if((state.credits||0)>=50&&!state.inventory.includes('Crown Shard')){state.inventory.push('Crown Shard');addLog('RELIC FOUND // Crown Shard');save();draw()}},true);
+ window.AG5={open,close,equip,use,combine,draw,get:()=>JSON.parse(JSON.stringify(x))};draw();
+})();
+</script>
+
+
+<style>
+.agGodBar{margin:12px 0;border:1px solid #6e5a9d;background:linear-gradient(90deg,#111326,#1b1028,#111326);border-radius:16px;padding:10px}.agGodHead{display:flex;justify-content:space-between;align-items:center;gap:8px}.agGodDeck{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}.agGod{min-height:82px;border:1px solid #55486e;border-radius:10px;background:#0c0e19;padding:7px;text-align:center;opacity:.35}.agGod.on{opacity:1;border-color:#e5bd62;box-shadow:0 0 16px #e5bd6230}.agGod b{display:block;color:#ffe39b;font-size:11px}.agGod small{font-size:8px;color:#adb4cc}.agGod button{margin-top:5px;width:100%;border:1px solid #655482;background:#191329;border-radius:7px;padding:5px;font-size:9px}.agEncounter{margin-top:12px;border:1px solid #344467;border-radius:14px;background:#090d18;padding:11px}.agEncounter b{color:#67e6ff}.agEncounter button{width:100%;margin-top:7px;border:1px solid #475578;background:#141a2e;border-radius:9px;padding:9px;font-weight:800}@media(max-width:560px){.agGodDeck{grid-template-columns:repeat(2,1fr)}}
+</style>
+<section class="agGodBar"><div class="agGodHead"><div><div class="eyebrow">PHASE 7 // RULE-BREAKING RELICS</div><b>GOD CARD ALTAR</b></div><span class="pill">DIVINITY <b id="agDiv">0</b></span></div><div class="agGodDeck" id="agGodDeck"></div><div class="agEncounter" id="agEncounter"><b>PROGRAMMABLE ENCOUNTER</b><div id="agEncounterText" style="font-size:11px;color:#b8bfd7;margin-top:4px">The station is reading your run...</div><button onclick="AG7.encounter()">⚡ Resolve Current Encounter</button></div></section>
+<script>
+(()=>{
+ const KEY='adventureGods.p7.gods';
+ let g={unlocked:[],charges:{Chronos:0,Oracle:0,Architect:0,Gravekeeper:0},divinity:0,lastPassage:null,deathMemory:0,encounters:0};
+ try{g={...g,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ const defs={
+  Chronos:['⧖','CHRONOS','Rewind to your previous passage once per charge.'],
+  Oracle:['◉','ORACLE','Reveal the safest-looking Fate card before pressing.'],
+  Architect:['⌘','ARCHITECT','Forge a temporary fourth story choice.'],
+  Gravekeeper:['☠','GRAVEKEEPER','Preserve one memory when a run collapses.']
+ };
+ const store=()=>{try{localStorage.setItem(KEY,JSON.stringify(g))}catch(e){}};
+ const toast=t=>{let d=document.createElement('div');d.className='agToast5';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1900)};
+ function unlock(n){if(g.unlocked.includes(n))return;g.unlocked.push(n);g.charges[n]=(g.charges[n]||0)+1;g.divinity++;addLog('GOD CARD UNLOCKED // '+n.toUpperCase());toast('GOD CARD AWAKENED • '+n.toUpperCase());store();draw()}
+ function use(n){if(!g.unlocked.includes(n)||!(g.charges[n]>0))return toast('NO '+n.toUpperCase()+' CHARGE');
+  if(n==='Chronos'){if(!g.lastPassage)return toast('NO MEMORY TO REWIND');g.charges[n]--;state.passage=g.lastPassage;addLog('CHRONOS // passage rewound');render();save()}
+  if(n==='Oracle'){g.charges[n]--;let cards=[...document.querySelectorAll('.fate:not(.used)')];if(cards.length){let c=cards.reduce((a,b)=>(b.textContent.includes('WOUND')?a:b),cards[0]);c.style.boxShadow='0 0 0 3px #65e7ff,0 0 30px #65e7ff';toast('ORACLE • marked a favorable thread')}else toast('DEAL FATE FIRST')}
+  if(n==='Architect'){g.charges[n]--;let c=document.getElementById('choices');let b=document.createElement('button');b.className='choice';b.innerHTML='⌘ Architect a side door<small>A temporary route created from your current state.</small>';b.onclick=()=>{state.credits+=8;state.luck+=1;state.flags.architectDoor=true;addLog('ARCHITECT // +8 credits, +1 luck');stats();save();b.remove()};c.prepend(b);toast('ARCHITECT • NEW CHOICE FORGED')}
+  if(n==='Gravekeeper'){g.charges[n]--;g.deathMemory++;state.flags.graveMemory=(state.flags.graveMemory||0)+1;addLog('GRAVEKEEPER // memory sealed');toast('ONE MEMORY SEALED BEYOND THE RUN');save()}
+  store();draw();
+ }
+ function draw(){document.getElementById('agDiv').textContent=g.divinity;document.getElementById('agGodDeck').innerHTML=Object.entries(defs).map(([n,d])=>{let on=g.unlocked.includes(n),ch=g.charges[n]||0;return `<div class="agGod ${on?'on':''}"><div style="font-size:22px">${d[0]}</div><b>${d[1]}</b><small>${on?d[2]:'LOCKED // discovered through play'}</small>${on?`<button onclick="AG7.use('${n}')">USE • ${ch} CHARGE</button>`:''}</div>`}).join('');document.getElementById('agEncounterText').textContent=encounterPreview()}
+ function encounterPreview(){let bits=[];if((state.hp||0)<50)bits.push('injured');if((state.luck||0)>=10)bits.push('high-luck');if((state.inventory||[]).length>=3)bits.push('well-equipped');if(state.flags?.greedy)bits.push('marked by greed');if(state.flags?.emptyThrone)bits.push('watched by the Empty Throne');return 'Detected: '+(bits.join(' • ')||'uncommitted traveler')+'. One press resolves against all detected conditions.'}
+ function encounter(){g.encounters++;let score=(state.luck||0)+(state.inventory?.length||0)*2+(g.unlocked.length*3)-(state.hp<40?5:0);
+  if(state.flags?.greedy&&state.credits>=10){state.credits-=10;state.luck+=3;addLog('ENCOUNTER // Tithe paid: -10 credits +3 luck')}
+  else if(score>=12){state.credits+=20;state.hp=Math.min(100,state.hp+8);addLog('ENCOUNTER // systems aligned: +20 credits +8 HP')}
+  else if(state.inventory?.includes('Vault Key')){state.luck+=2;addLog('ENCOUNTER // Vault Key bypass: +2 luck')}
+  else{state.hp=Math.max(0,state.hp-9);state.credits+=6;addLog('ENCOUNTER // rough passage: -9 HP +6 credits')}
+  if(g.encounters===1)unlock('Chronos');if(g.encounters===2)unlock('Oracle');if(g.encounters===3)unlock('Architect');if(g.encounters===4)unlock('Gravekeeper');stats();save();store();draw();toast('ENCOUNTER RESOLVED • STATE RECALCULATED')
+ }
+ const ogGoto=window.goto;window.goto=function(id){g.lastPassage=state.passage;store();return ogGoto(id)};
+ document.addEventListener('click',()=>{if((state.luck||0)>=9)unlock('Oracle');if((state.inventory||[]).length>=3)unlock('Architect');if((state.hp||0)<=45)unlock('Gravekeeper');if(state.flags?.emptyThrone)unlock('Chronos');draw()},true);
+ window.AG7={use,encounter,unlock,get:()=>JSON.parse(JSON.stringify(g))};draw();
+})();
+</script>
+
+<style>
+.agWorld{margin:14px 0;border:1px solid #775d32;background:linear-gradient(145deg,#171322,#090b13);border-radius:18px;padding:12px;box-shadow:inset 0 0 45px #d6a6400d}.agWorldTop{display:flex;justify-content:space-between;align-items:center;gap:8px}.agRegions{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}.agRegion{border:1px solid #3b4260;background:#101526;border-radius:10px;padding:8px;min-height:82px;text-align:left}.agRegion.active{border-color:#f4c45c;box-shadow:0 0 18px #f4c45c22}.agRegion.locked{opacity:.4}.agRegion b{display:block;font-size:10px;color:#ffe39b}.agRegion small{font-size:8px;color:#aab0c8}.agNpc,.agQuest8{margin-top:9px;border:1px solid #303854;background:#090d18;border-radius:11px;padding:9px}.agQuest8 strong{color:#65e7ff}.agNpc button,.agQuest8 button{border:1px solid #475578;background:#151b30;border-radius:8px;padding:7px;margin:5px 4px 0 0;font-size:10px;font-weight:800}.agShop8{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.agShop8 button{border:1px solid #66532c;background:#1d1820;border-radius:9px;padding:8px;font-size:9px}.agMapLine{height:2px;background:linear-gradient(90deg,transparent,#65e7ff88,#f4c45c88,transparent);margin:8px 0}@media(max-width:650px){.agRegions{grid-template-columns:repeat(3,1fr)}.agShop8{grid-template-columns:1fr}}
+</style>
+<section class="agWorld"><div class="agWorldTop"><div><div class="eyebrow">PHASE 8 // LIVING WORLD</div><b>THE FIVE DOMAINS</b></div><span class="pill">REGION <b id="agRegionName">NEXUS</b></span></div><div class="agRegions" id="agRegions"></div><div class="agMapLine"></div><div id="agWorldBody"></div></section>
+<script>
+(()=>{
+ const KEY='adventureGods.p8.world';
+ let w={region:'Nexus',visited:{Nexus:1},npc:{Mara:0,Dealer:0,Warden:0},quests:{signal:'open',glass:'locked',crown:'locked'},discoveries:[],shopBuys:0};
+ try{w={...w,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ const regions={
+  Nexus:{icon:'✦',need:()=>true,desc:'The central card station. All roads return here.'},
+  Bazaar:{icon:'◈',need:()=>state.credits>=10||w.visited.Bazaar,desc:'A market that prices objects according to your past.'},
+  Archive:{icon:'⌬',need:()=>state.inventory?.includes('Eye Token')||w.visited.Archive,desc:'Memory vaults react to discoveries and earlier choices.'},
+  Wastes:{icon:'☄',need:()=>state.luck>=8||w.visited.Wastes,desc:'A dangerous route where programmable encounters mutate.'},
+  Citadel:{icon:'♛',need:()=>((window.AG7?.get().unlocked||[]).length>=2)||w.visited.Citadel,desc:'God Cards unlock the final domain gate.'}
+ };
+ const save8=()=>{try{localStorage.setItem(KEY,JSON.stringify(w))}catch(e){}};
+ const toast=t=>{let d=document.createElement('div');d.className='agToast5';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1700)};
+ function travel(n){if(!regions[n].need())return toast('DOMAIN LOCKED • CHANGE YOUR RUN FIRST');w.region=n;w.visited[n]=(w.visited[n]||0)+1;state.flags['visited'+n]=true;addLog('TRAVEL // '+n.toUpperCase());if(n==='Archive'&&w.quests.glass==='locked')w.quests.glass='open';if(n==='Citadel'&&w.quests.crown==='locked')w.quests.crown='open';save();save8();draw()}
+ function npc(n){w.npc[n]=(w.npc[n]||0)+1;if(n==='Mara'){state.luck+=1;addLog('MARA // remembers meeting '+w.npc[n])}if(n==='Dealer'){state.credits+=4;addLog('DEALER // pays 4 credits for your story')}if(n==='Warden'){state.hp=Math.min(100,state.hp+5);addLog('WARDEN // restores 5 HP')}stats();save();save8();draw()}
+ function buy(n,c){if(state.credits<c)return toast('NOT ENOUGH CREDITS');state.credits-=c;if(!state.inventory.includes(n))state.inventory.push(n);w.shopBuys++;addLog('BAZAAR // '+n+' purchased');if(w.shopBuys>=2)w.quests.signal='done';stats();save();save8();draw();toast('ACQUIRED • '+n.toUpperCase())}
+ function quest(id){if(id==='signal'){if(w.quests.signal==='done')return toast('QUEST ALREADY COMPLETE');if(w.npc.Dealer<1)return toast('FIND THE DEALER FIRST');state.credits+=12;state.luck+=1;w.quests.signal='done';addLog('QUEST COMPLETE // Signal Debt')}
+  if(id==='glass'){if(w.quests.glass!=='open')return;if(!state.inventory.includes('Eye Token'))return toast('EYE TOKEN REQUIRED');if(!state.inventory.includes('Glass Memory'))state.inventory.push('Glass Memory');w.quests.glass='done';state.luck+=2;addLog('QUEST COMPLETE // Glass Memory')}
+  if(id==='crown'){if(w.quests.crown!=='open')return;if((window.AG7?.get().unlocked||[]).length<2)return toast('TWO GOD CARDS REQUIRED');state.credits+=30;if(!state.inventory.includes('Citadel Seal'))state.inventory.push('Citadel Seal');w.quests.crown='done';addLog('QUEST COMPLETE // Crown Gate')}
+  stats();save();save8();draw();toast('QUEST STATE UPDATED')}
+ function body(){let r=w.region;if(r==='Nexus')return `<div class="agNpc"><strong>THE NEXUS</strong><div style="font-size:11px;color:#b9bfd4">The original three-card stage is now the hub. Domains remember visits and can change later encounters.</div><button onclick="AG8.npc('Mara')">Talk to Mara • ${w.npc.Mara}</button><button onclick="AG8.quest('signal')">Quest: Signal Debt • ${w.quests.signal}</button></div>`;
+ if(r==='Bazaar')return `<div class="agNpc"><strong>THE BRASS DEALER</strong><div style="font-size:11px;color:#b9bfd4">The Dealer remembers every conversation.</div><button onclick="AG8.npc('Dealer')">Speak • meeting ${w.npc.Dealer+1}</button><div class="agShop8"><button onclick="AG8.buy('Star Key',8)">STAR KEY<br>8 credits</button><button onclick="AG8.buy('Fortune Charm',12)">FORTUNE CHARM<br>12 credits</button><button onclick="AG8.buy('Field Tonic',6)">FIELD TONIC<br>6 credits</button></div></div>`;
+ if(r==='Archive')return `<div class="agQuest8"><strong>QUEST // GLASS MEMORY</strong><div style="font-size:11px;color:#b9bfd4">The Archive checks your Eye Token and previous discoveries before opening its memory chamber.</div><button onclick="AG8.quest('glass')">Resolve • ${w.quests.glass}</button></div>`;
+ if(r==='Wastes')return `<div class="agNpc"><strong>WARDEN OF THE WASTES</strong><div style="font-size:11px;color:#b9bfd4">The Wastes feed your current inventory, health and God Cards into Phase 7's programmable encounter engine.</div><button onclick="AG8.npc('Warden')">Request field repair • ${w.npc.Warden}</button><button onclick="AG7.encounter()">⚡ Run Wastes Encounter</button></div>`;
+ return `<div class="agQuest8"><strong>QUEST // CROWN GATE</strong><div style="font-size:11px;color:#b9bfd4">The Citadel exists only after enough divine systems awaken. Completing it awards a Citadel Seal for later phases.</div><button onclick="AG8.quest('crown')">Challenge Gate • ${w.quests.crown}</button></div>`}
+ function draw(){document.getElementById('agRegionName').textContent=w.region.toUpperCase();document.getElementById('agRegions').innerHTML=Object.entries(regions).map(([n,r])=>`<button class="agRegion ${w.region===n?'active':''} ${r.need()?'':'locked'}" onclick="AG8.travel('${n}')"><div style="font-size:20px">${r.icon}</div><b>${n.toUpperCase()}</b><small>${r.need()?r.desc:'LOCKED // satisfy run conditions'}</small></button>`).join('');document.getElementById('agWorldBody').innerHTML=body()}
+ document.addEventListener('click',()=>{if(state.flags?.emptyThrone&&!w.discoveries.includes('Throne Echo'))w.discoveries.push('Throne Echo');if(state.flags?.greedy&&!w.discoveries.includes('Gold Mark'))w.discoveries.push('Gold Mark');save8();},true);
+ window.AG8={travel,npc,buy,quest,draw,get:()=>JSON.parse(JSON.stringify(w))};draw();
+})();
+</script>
+
+<style>
+/* PHASE 9 // CASINO ADVENTURE LAYER */
+.agCasino9{margin:14px 0 0;border:1px solid #9b7732;background:radial-gradient(circle at 50% 0,#382510 0,#17101d 36%,#080a12 78%);border-radius:20px;padding:13px;box-shadow:inset 0 0 70px #f4c45c12,0 18px 45px #0007;overflow:hidden;position:relative}.agCasino9:before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 34px,#f4c45c08 35px 36px)}.agCasinoTop{position:relative;display:flex;justify-content:space-between;align-items:center;gap:8px}.agMeter{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.agChip{border:1px solid #735d32;background:#17131d;padding:5px 7px;border-radius:999px;font-size:9px}.agSlots9{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px;perspective:900px}.agC9{min-height:148px;border:2px solid #725a2a;border-radius:14px;background:linear-gradient(145deg,#32172a,#120c18);padding:9px;position:relative;overflow:hidden;box-shadow:inset 0 0 0 3px #0a0710,0 8px 22px #0009;transition:transform .28s,filter .28s}.agC9:active{transform:translateY(-3px) scale(.98)}.agC9.dealing{animation:agDeal9 .48s both}.agC9.revealed{background:linear-gradient(145deg,#f3e7c6,#bca86d);color:#171118}.agC9.common{border-color:#827c76}.agC9.rare{border-color:#65e7ff;box-shadow:0 0 18px #65e7ff44,inset 0 0 0 3px #0a0710}.agC9.epic{border-color:#bb72ff;box-shadow:0 0 22px #bb72ff55,inset 0 0 0 3px #0a0710}.agC9.divine{border-color:#ffd66b;box-shadow:0 0 28px #ffd66b77,inset 0 0 0 3px #0a0710;animation:agDivine9 1.4s infinite alternate}.agC9.used{filter:saturate(.45);opacity:.66}.agC9 .agBack9{position:absolute;inset:8px;border:1px solid #d8aa4f88;border-radius:9px;display:grid;place-items:center;text-align:center;font-size:30px;font-weight:950}.agC9.revealed .agBack9{display:none}.agFace9{display:none}.agC9.revealed .agFace9{display:block}.agRarity9{font-size:8px;font-weight:950;letter-spacing:.14em}.agFace9 b{display:block;font-family:Georgia,serif;font-size:15px;margin:5px 0}.agFace9 small{font-size:9px;line-height:1.35}.agCasinoControls{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.agCasinoControls button{border:1px solid #65532f;background:#171521;border-radius:9px;padding:9px;font-size:9px;font-weight:900}.agJackpot9{position:relative;margin-top:9px;border:1px solid #3a405c;background:#090d18;border-radius:11px;padding:9px;font-size:10px;color:#bfc5dc}.agJackpot9 strong{color:#ffd66b}.agBurst9{animation:agBurst9 .7s}@keyframes agDeal9{0%{transform:translateY(-80px) rotateY(80deg);opacity:0}100%{transform:none;opacity:1}}@keyframes agDivine9{to{filter:brightness(1.2)}}@keyframes agBurst9{50%{box-shadow:0 0 70px #ffd66b99,inset 0 0 60px #ffd66b22}}@media(max-width:650px){.agC9{min-height:128px;padding:7px}.agFace9 b{font-size:12px}.agFace9 small{font-size:8px}.agCasinoControls{grid-template-columns:1fr 1fr}.agCasinoTop{align-items:flex-start;flex-direction:column}.agMeter{justify-content:flex-start}}
+</style>
+<section class="agCasino9" id="agCasino9"><div class="agCasinoTop"><div><div class="eyebrow">PHASE 9 // CASINO ADVENTURE</div><b>THE DIVINE THREE-CARD HOUSE</b></div><div class="agMeter"><span class="agChip">STREAK <b id="agStreak9">0</b></span><span class="agChip">MULTI <b id="agMulti9">x1</b></span><span class="agChip">JACKPOTS <b id="agJackpots9">0</b></span></div></div><div class="agSlots9" id="agSlots9"></div><div class="agCasinoControls"><button onclick="AG9.deal()">♠ DEAL HOUSE</button><button onclick="AG9.mystery()">? MYSTERY HAND</button><button onclick="AG9.cash()">◈ BANK STREAK</button></div><div class="agJackpot9" id="agJackpot9"><strong>HOUSE RULE:</strong> one press resolves a normal card. Matching symbols, rarities and story conditions build multipliers. Special relics may enter gathering mode.</div></section>
+<script>
+(()=>{
+ const KEY='adventureGods.p9.casino';
+ let c={streak:0,multi:1,jackpots:0,hands:0,banked:0,cards:[],used:[false,false,false],mysteries:0};
+ try{c={...c,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ const pool=[
+  {s:'♠',n:'VOID ACE',r:'common',d:'Push through the dark: +5 credits.',fx:()=>state.credits+=5},
+  {s:'♥',n:'LIFE QUEEN',r:'rare',d:'Restore 9 HP.',fx:()=>state.hp=Math.min(100,state.hp+9)},
+  {s:'♦',n:'GILDED KING',r:'rare',d:'Gain credits scaled by your multiplier.',fx:()=>state.credits+=8*c.multi},
+  {s:'♣',n:'FORTUNE JACK',r:'common',d:'Gain +2 Luck.',fx:()=>state.luck+=2},
+  {s:'☽',n:'ARCHIVE MOON',r:'epic',d:'Archive knowledge reacts to your discoveries.',fx:()=>{state.luck+=state.inventory?.includes('Glass Memory')?5:2;state.flags.archiveMoon=true}},
+  {s:'♛',n:'CITADEL CROWN',r:'divine',d:'Citadel Seal turns this into a royal payout.',fx:()=>{let royal=state.inventory?.includes('Citadel Seal');state.credits+=royal?35:12;if(royal)c.multi=Math.min(9,c.multi+2)}},
+  {s:'⌬',n:'ORACLE MIRROR',r:'epic',d:'God Card knowledge increases the reward.',fx:()=>{let gods=window.AG7?.get().unlocked?.length||0;state.luck+=Math.max(1,gods);c.streak+=gods}},
+  {s:'⚿',n:'STAR KEY',r:'rare',d:'A carried Star Key converts into a stronger route.',fx:()=>{if(state.inventory?.includes('Star Key')){state.credits+=18;state.flags.starRoute=true}else state.credits+=4}},
+  {s:'✦',n:'HOUSE GOD',r:'divine',d:'A rare rule-changing draw. +1 multiplier and Divinity trace.',fx:()=>{c.multi=Math.min(9,c.multi+1);state.luck+=3;state.flags.houseGod=(state.flags.houseGod||0)+1}}
+ ];
+ const save9=()=>{try{localStorage.setItem(KEY,JSON.stringify(c))}catch(e){}};
+ const pick=()=>{let roll=Math.random(),allowed=pool.filter(x=>x.r==='common'||(roll>.35&&x.r==='rare')||(roll>.72&&x.r==='epic')||(roll>.91&&x.r==='divine'));return allowed[Math.floor(Math.random()*allowed.length)]||pool[0]};
+ function deal(myst=false){c.hands++;c.cards=[pick(),pick(),pick()];if(myst){let k=Math.floor(Math.random()*3);c.cards[k]=pool[5+Math.floor(Math.random()*4)];c.mysteries++}c.used=[false,false,false];draw();[...document.querySelectorAll('.agC9')].forEach((e,i)=>{e.classList.add('dealing');e.style.animationDelay=(i*.08)+'s'});document.getElementById('agJackpot9').innerHTML='<strong>HAND '+c.hands+':</strong> choose any card. Each press resolves immediately; build a three-card chain for the house bonus.';save9()}
+ function press(i){if(c.used[i]||!c.cards[i])return;c.used[i]=true;let card=c.cards[i];card.fx();c.streak++;c.multi=Math.min(9,1+Math.floor(c.streak/3));addLog('HOUSE // '+card.n+' resolved • streak '+c.streak);stats();save();checkHand();save9();draw()}
+ function checkHand(){if(!c.used.every(Boolean))return;let syms=c.cards.map(x=>x.s),rar=c.cards.map(x=>x.r);let same=syms.every(x=>x===syms[0]),elite=rar.filter(x=>x==='epic'||x==='divine').length;
+  if(same){let win=40*c.multi;state.credits+=win;c.jackpots++;c.streak+=3;document.getElementById('agCasino9').classList.add('agBurst9');setTimeout(()=>document.getElementById('agCasino9')?.classList.remove('agBurst9'),800);addLog('JACKPOT // symbol match +'+win+' credits')}
+  else if(elite>=2){state.luck+=5;c.streak+=2;addLog('DIVINE CHAIN // +5 luck')}
+  else{state.credits+=3*c.multi;addLog('HAND COMPLETE // chain payout +'+(3*c.multi))}
+  if(c.streak>=12&&!state.inventory.includes('House Sigil')){state.inventory.push('House Sigil');addLog('SPECIAL GATHER // HOUSE SIGIL acquired')}
+  stats();save();save9();
+ }
+ function mystery(){if(state.credits<5){document.getElementById('agJackpot9').innerHTML='<strong>MYSTERY HAND:</strong> requires 5 fictional credits.';return}state.credits-=5;stats();save();deal(true)}
+ function cash(){if(c.streak<3){document.getElementById('agJackpot9').innerHTML='<strong>BANK:</strong> build at least a 3-card streak first.';return}let win=c.streak*c.multi;c.banked+=win;state.credits+=win;c.streak=0;c.multi=1;addLog('BANK // streak converted to +'+win+' credits');stats();save();save9();draw()}
+ function draw(){document.getElementById('agStreak9').textContent=c.streak;document.getElementById('agMulti9').textContent='x'+c.multi;document.getElementById('agJackpots9').textContent=c.jackpots;document.getElementById('agSlots9').innerHTML=(c.cards.length?c.cards:[null,null,null]).map((x,i)=>`<button class="agC9 ${x&&c.used[i]?'revealed '+x.r+' used':''}" onclick="AG9.press(${i})"><div class="agBack9">AG<br><span style="font-size:9px">FATE ${i+1}</span></div>${x?`<div class="agFace9"><div class="agRarity9">${x.r.toUpperCase()} // ${x.s}</div><b>${x.n}</b><small>${x.d}</small></div>`:''}</button>`).join('')}
+ window.AG9={deal,press,mystery,cash,get:()=>JSON.parse(JSON.stringify(c))};draw();if(!c.cards.length)deal();
+})();
+</script>
+
+
+<style>
+/* PHASE 10 // COMPLETE LOOP */
+.agFinal10{margin:15px 0;border:1px solid #b28b3c;background:radial-gradient(circle at 50% 0,#342313,#15101f 40%,#080a12 85%);border-radius:20px;padding:13px;box-shadow:inset 0 0 70px #ffd66b10,0 20px 55px #0008}.agFinalTop{display:flex;justify-content:space-between;gap:10px;align-items:center}.agRunStats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}.agStat10{border:1px solid #3c435f;background:#0d1120;border-radius:10px;padding:8px;text-align:center}.agStat10 b{display:block;color:#ffe19a;font-size:17px}.agStat10 small{font-size:8px;color:#aeb5ca}.agEndings10,.agAch10{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}.agEnding,.agAch{border:1px solid #343b56;background:#0c101c;border-radius:10px;padding:8px;min-height:68px;opacity:.42}.agEnding.on,.agAch.on{opacity:1;border-color:#d2a94e;box-shadow:0 0 16px #d2a94e22}.agEnding b,.agAch b{display:block;font-size:10px;color:#ffe19a}.agEnding small,.agAch small{font-size:8px;color:#adb4c8}.agFinalBtns{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.agFinalBtns button{border:1px solid #6d5933;background:#1a1621;border-radius:10px;padding:10px;font-size:10px;font-weight:900}.agEndingScreen{position:fixed;inset:0;z-index:50000;background:radial-gradient(circle,#251b35,#05070d 72%);display:none;place-items:center;padding:18px}.agEndingBox{max-width:600px;width:100%;border:1px solid #e0b854;background:#0e1120;border-radius:22px;padding:22px;text-align:center;box-shadow:0 0 70px #e0b85433}.agEndingBox h1{color:#ffe19a;font-family:Georgia,serif;margin:8px 0}.agEndingBox button{width:100%;margin-top:8px;border:1px solid #786238;background:#1b1722;border-radius:11px;padding:11px;font-weight:900}.agMeta10{margin-top:8px;font-size:9px;color:#9fa7c1}.agNG{color:#65e7ff!important}@media(max-width:650px){.agRunStats{grid-template-columns:repeat(2,1fr)}.agEndings10,.agAch10{grid-template-columns:1fr 1fr}.agFinalBtns{grid-template-columns:1fr}.agFinalTop{align-items:flex-start;flex-direction:column}}
+</style>
+<section class="agFinal10"><div class="agFinalTop"><div><div class="eyebrow">PHASE 10 // COMPLETE ADVENTURE LOOP</div><b>GOD ARCHIVE • ENDINGS • REBIRTH</b></div><span class="pill agNG">ASCENSION <b id="agAsc10">0</b></span></div><div class="agRunStats" id="agStats10"></div><div class="eyebrow" style="margin-top:11px">DISCOVERED ENDINGS</div><div class="agEndings10" id="agEndings10"></div><div class="eyebrow" style="margin-top:11px">ACHIEVEMENTS</div><div class="agAch10" id="agAch10"></div><div class="agFinalBtns"><button onclick="AG10.judge()">♛ ENTER FINAL JUDGMENT</button><button onclick="AG10.archive()">⌬ OPEN GOD ARCHIVE</button><button onclick="AG10.rebirth()">⟲ NEW GAME +</button></div><div class="agMeta10" id="agMeta10"></div></section>
+<div class="agEndingScreen" id="agEndingScreen"><div class="agEndingBox"><div class="eyebrow">ADVENTURE GODS // END OF RUN</div><div style="font-size:42px" id="agEndIcon">♛</div><h1 id="agEndTitle">THE THRONE</h1><p id="agEndText"></p><button onclick="AG10.continueRun()">CONTINUE THIS RUN</button><button onclick="AG10.rebirth()">NEW GAME + • CARRY THE MEMORY</button></div></div>
+<script>
+(()=>{
+ const KEY='adventureGods.p10.meta';
+ let m={runs:1,ascension:0,endings:[],achievements:[],totalCards:0,totalCredits:0,deaths:0,bestStreak:0,archive:[],seed:Math.floor(Math.random()*999999),started:Date.now()};
+ try{m={...m,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ const endings={
+  crown:['♛','THE CROWNED GOD','You reach the Citadel carrying its Seal and the House recognizes you as an architect of the station. The doors stop judging you. They begin taking orders.'],
+  oracle:['◉','THE ALL-SEEING PATH','Luck, relics and awakened God Cards align. You leave through a passage that only exists for a traveler who learned how the machine thinks.'],
+  fortune:['♦','THE GILDED ASCENSION','You master the Divine House, bank a fortune and buy your way through a door that swore it could never be purchased.'],
+  wanderer:['☽','THE ENDLESS WANDERER','You refuse the obvious throne. The five domains remain open and your name becomes another rumor traveling between them.'],
+  grave:['☠','THE KEEPER BEYOND DEATH','The run collapses, but the Gravekeeper catches a memory before darkness closes. Something survives to the next world.']
+ };
+ const ach={
+  first:['FIRST BLOOD','Resolve your first dangerous encounter.'],collector:['RELIC HAND','Carry five different objects.'],divine:['GODHAND','Awaken all four God Cards.'],highroller:['HIGH ROLLER','Reach 150 fictional credits.'],jackpot:['HOUSE BREAKER','Land a Divine House jackpot.'],world:['FIVE DOORS','Visit all five domains.'],survivor:['STILL STANDING','Reach 100 HP after being wounded.'],ascended:['ASCENDED','Complete an ending and begin New Game+.']
+ };
+ const save10=()=>{try{localStorage.setItem(KEY,JSON.stringify(m))}catch(e){}};
+ const addA=n=>{if(!m.achievements.includes(n)){m.achievements.push(n);addLog('ACHIEVEMENT // '+ach[n][0]);save10()}};
+ function evaluate(){
+  let gods=window.AG7?.get?.().unlocked?.length||0, world=window.AG8?.get?.(), casino=window.AG9?.get?.();
+  if((state.history||[]).some(x=>/ENCOUNTER|HEALTH -/.test(x)))addA('first');
+  if((state.inventory||[]).length>=5)addA('collector'); if(gods>=4)addA('divine'); if((state.credits||0)>=150)addA('highroller');
+  if((casino?.jackpots||0)>=1)addA('jackpot'); if(world&&Object.values(world.visited||{}).filter(Boolean).length>=5)addA('world');
+  if((state.hp||0)>=100&&(state.history||[]).some(x=>/HEALTH -|rough passage/.test(x)))addA('survivor');
+  m.bestStreak=Math.max(m.bestStreak,casino?.streak||0);m.totalCredits=Math.max(m.totalCredits,state.credits||0);
+  draw();save10();
+ }
+ function chooseEnding(){let gods=window.AG7?.get?.().unlocked?.length||0,c=window.AG9?.get?.()||{},w=window.AG8?.get?.();if((state.hp||0)<=0)return'grave';if(state.inventory?.includes('Citadel Seal')&&gods>=2)return'crown';if(gods>=4&&(state.luck||0)>=16)return'oracle';if((state.credits||0)>=120&&(c.jackpots||0)>=1)return'fortune';return'wanderer'}
+ function judge(){let id=chooseEnding(),e=endings[id];if(!m.endings.includes(id))m.endings.push(id);m.ascension++;m.archive.unshift({run:m.runs,ending:id,time:Date.now(),credits:state.credits,luck:state.luck,items:state.inventory.length});m.archive=m.archive.slice(0,12);save10();document.getElementById('agEndIcon').textContent=e[0];document.getElementById('agEndTitle').textContent=e[1];document.getElementById('agEndText').textContent=e[2]+'  Run '+m.runs+' ends with '+state.credits+' credits, '+state.luck+' Luck and '+state.inventory.length+' carried objects.';document.getElementById('agEndingScreen').style.display='grid';draw()}
+ function continueRun(){document.getElementById('agEndingScreen').style.display='none'}
+ function rebirth(){if(m.ascension<1&&!confirm('Begin New Game+ before completing an ending?'))return;let keep=[];['House Sigil','Citadel Seal','Oracle Lens'].forEach(x=>{if(state.inventory?.includes(x))keep.push(x)});m.runs++;if(m.ascension)addA('ascended');state.hp=100;state.luck=5+Math.min(10,m.ascension*2);state.credits=20+Math.min(80,m.ascension*10);state.inventory=keep;state.flags={newGamePlus:m.runs-1,legacyEndings:[...m.endings]};state.passage='arrival';state.history=['NEW GAME + // Run '+m.runs+' begins','LEGACY // '+m.endings.length+' ending(s) remembered'];save();save10();document.getElementById('agEndingScreen').style.display='none';deal();render();draw();window.scrollTo({top:0,behavior:'smooth'})}
+ function archive(){let lines=['GOD ARCHIVE','',`RUNS: ${m.runs}`,`ASCENSIONS: ${m.ascension}`,`ENDINGS: ${m.endings.map(x=>endings[x][1]).join(', ')||'None yet'}`,`ACHIEVEMENTS: ${m.achievements.map(x=>ach[x][0]).join(', ')||'None yet'}`,`BEST HOUSE STREAK: ${m.bestStreak}`,`HIGHEST RECORDED CREDITS: ${m.totalCredits}`,'','RECENT ASCENSIONS:',...m.archive.map(x=>`Run ${x.run} • ${endings[x.ending]?.[1]||x.ending} • ${x.credits}c / ${x.luck} luck / ${x.items} items`)];alert(lines.join('\n'))}
+ function draw(){let c=window.AG9?.get?.()||{},g=window.AG7?.get?.(),w=window.AG8?.get?.();document.getElementById('agAsc10').textContent=m.ascension;document.getElementById('agStats10').innerHTML=[['RUN',m.runs],['CARDS',c.hands||0],['GODS',g?.unlocked?.length||0],['REGIONS',w?Object.values(w.visited||{}).filter(Boolean).length:1]].map(x=>`<div class="agStat10"><b>${x[1]}</b><small>${x[0]}</small></div>`).join('');document.getElementById('agEndings10').innerHTML=Object.entries(endings).map(([id,e])=>`<div class="agEnding ${m.endings.includes(id)?'on':''}"><b>${e[0]} ${m.endings.includes(id)?e[1]:'???'}</b><small>${m.endings.includes(id)?e[2].slice(0,72)+'…':'Undiscovered ending'}</small></div>`).join('');document.getElementById('agAch10').innerHTML=Object.entries(ach).map(([id,a])=>`<div class="agAch ${m.achievements.includes(id)?'on':''}"><b>${m.achievements.includes(id)?'✦ ':'◇ '}${a[0]}</b><small>${a[1]}</small></div>`).join('');document.getElementById('agMeta10').textContent='PROCEDURAL RUN SEED '+m.seed+' • '+m.endings.length+'/'+Object.keys(endings).length+' endings • '+m.achievements.length+'/'+Object.keys(ach).length+' achievements'}
+ const oldResolve10=window.resolveFate;window.resolveFate=function(el,f){m.totalCards++;oldResolve10(el,f);evaluate()};
+ document.addEventListener('click',()=>setTimeout(evaluate,40),true);
+ setInterval(()=>{if((state.hp||0)<=0&&document.getElementById('agEndingScreen').style.display!=='grid'){m.deaths++;judge()}},1200);
+ window.AG10={judge,archive,rebirth,continueRun,evaluate,get:()=>JSON.parse(JSON.stringify(m))};evaluate();
+})();
+</script>
+
+</body></html>
